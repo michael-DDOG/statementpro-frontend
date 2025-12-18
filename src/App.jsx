@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 // ============================================
 // CONFIGURATION
 // ============================================
-const API_URL = 'http://18.218.29.238';
+const API_URL = 'http://18.218.29.238:3000';
 
 // ============================================
 // ICONS
