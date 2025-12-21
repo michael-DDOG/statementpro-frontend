@@ -288,17 +288,21 @@ function TransactionTable({ data, onExport }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {data.slice(0, 20).map((tx, idx) => (
-              <tr key={idx} className="hover:bg-gray-50">
-                <td className="px-4 py-3 text-sm text-gray-900">{tx.date}</td>
-                <td className="px-4 py-3 text-sm text-gray-600 max-w-xs truncate">{tx.description}</td>
-                <td className={`px-4 py-3 text-sm font-medium text-right ${tx.type === 'credit' ? 'text-emerald-600' : 'text-red-600'}`}>
-                  {tx.type === 'credit' ? '+' : '-'}${Math.abs(tx.amount).toFixed(2)}
-                </td>
-                <td className="px-4 py-3"><span className={`px-2 py-1 text-xs font-medium rounded-full ${tx.type === 'credit' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}`}>{tx.type}</span></td>
-                <td className="px-4 py-3 text-sm text-gray-900 text-right">${tx.balance?.toFixed(2) || '-'}</td>
-              </tr>
-            ))}
+            {data.slice(0, 20).map((tx, idx) => {
+              const amount = parseFloat(tx.amount) || 0;
+              const balance = parseFloat(tx.balance) || null;
+              return (
+                <tr key={idx} className="hover:bg-gray-50">
+                  <td className="px-4 py-3 text-sm text-gray-900">{tx.date || '-'}</td>
+                  <td className="px-4 py-3 text-sm text-gray-600 max-w-xs truncate">{tx.description || '-'}</td>
+                  <td className={`px-4 py-3 text-sm font-medium text-right ${tx.type === 'credit' ? 'text-emerald-600' : 'text-red-600'}`}>
+                    {tx.type === 'credit' ? '+' : '-'}${Math.abs(amount).toFixed(2)}
+                  </td>
+                  <td className="px-4 py-3"><span className={`px-2 py-1 text-xs font-medium rounded-full ${tx.type === 'credit' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}`}>{tx.type || 'debit'}</span></td>
+                  <td className="px-4 py-3 text-sm text-gray-900 text-right">{balance ? `${balance.toFixed(2)}` : '-'}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         {data.length > 20 && <div className="p-4 bg-gray-50 text-center text-sm text-gray-500">Showing 20 of {data.length} transactions. Export to see all.</div>}
