@@ -38,6 +38,15 @@ const Icons = {
   Plus: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
   FileSpreadsheet: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>,
   Calculator: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>,
+  Link: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+  Code: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
+  Users: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+  Key: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>,
+  Copy: () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>,
+  CheckCircle: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
+  XCircle: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>,
+  Settings: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>,
+  ExternalLink: () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>,
 };
 
 // ============================================
@@ -127,6 +136,82 @@ NEWFILEUID:NONE
 </OFX>`;
 
   return qboContent;
+}
+
+// ============================================
+// QIF EXPORT HELPER - Quicken Format
+// ============================================
+function generateQIFFile(transactions, fileName) {
+  const formatDate = (dateStr) => {
+    if (!dateStr || dateStr === 'N/A') return new Date().toLocaleDateString('en-US');
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return new Date().toLocaleDateString('en-US');
+    return d.toLocaleDateString('en-US');
+  };
+
+  let qifContent = '!Type:Bank\n';
+
+  transactions.forEach((tx) => {
+    const amount = parseFloat(tx.amount) || 0;
+    const signedAmount = tx.type === 'credit' ? Math.abs(amount) : -Math.abs(amount);
+    const desc = (tx.description || 'Transaction').substring(0, 64);
+
+    qifContent += `D${formatDate(tx.date)}\n`;
+    qifContent += `T${signedAmount.toFixed(2)}\n`;
+    qifContent += `P${desc}\n`;
+    if (tx.category) qifContent += `L${tx.category}\n`;
+    qifContent += '^\n';
+  });
+
+  return qifContent;
+}
+
+// ============================================
+// BALANCE VERIFICATION HELPER
+// ============================================
+function verifyBalances(transactions) {
+  if (!transactions || transactions.length < 2) return { valid: true, errors: [] };
+
+  const errors = [];
+  let calculatedBalance = null;
+
+  for (let i = 0; i < transactions.length; i++) {
+    const tx = transactions[i];
+    const currentBalance = parseFloat(tx.balance);
+    const amount = parseFloat(tx.amount) || 0;
+
+    if (isNaN(currentBalance)) continue;
+
+    if (calculatedBalance !== null) {
+      const signedAmount = tx.type === 'credit' ? Math.abs(amount) : -Math.abs(amount);
+      const expectedBalance = calculatedBalance + signedAmount;
+      const diff = Math.abs(expectedBalance - currentBalance);
+
+      if (diff > 0.02) { // Allow 2 cent tolerance for rounding
+        errors.push({
+          row: i + 1,
+          date: tx.date,
+          expected: expectedBalance.toFixed(2),
+          actual: currentBalance.toFixed(2),
+          difference: (currentBalance - expectedBalance).toFixed(2)
+        });
+      }
+    }
+
+    calculatedBalance = currentBalance;
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    summary: {
+      totalTransactions: transactions.length,
+      openingBalance: parseFloat(transactions[0]?.balance) || 0,
+      closingBalance: parseFloat(transactions[transactions.length - 1]?.balance) || 0,
+      totalCredits: transactions.filter(t => t.type === 'credit').reduce((sum, t) => sum + Math.abs(parseFloat(t.amount) || 0), 0),
+      totalDebits: transactions.filter(t => t.type === 'debit').reduce((sum, t) => sum + Math.abs(parseFloat(t.amount) || 0), 0)
+    }
+  };
 }
 
 // ============================================
@@ -261,9 +346,9 @@ function AuthModal({ onClose, onLogin, onRegister, error, setError }) {
 // ============================================
 function PricingModal({ onClose, onUpgrade, currentPlan }) {
   const plans = [
-    { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/month`, 'PDF & image upload', 'Excel & CSV export'], cta: 'Current Plan', disabled: true, highlight: false },
-    { name: 'Pro', price: '$9', features: ['Unlimited conversions', 'Bulk upload (10 files)', 'QuickBooks QBO export', 'Priority support'], cta: 'Upgrade to Pro', disabled: false, highlight: true },
-    { name: 'Business', price: '$29', features: ['Everything in Pro', 'API access', 'Team features', 'Dedicated support'], cta: 'Contact Sales', disabled: false, highlight: false },
+    { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/month`, 'Excel & CSV export', 'Balance verification'], cta: 'Current Plan', disabled: true, highlight: false },
+    { name: 'Pro', price: '$9', features: ['Unlimited conversions', 'QuickBooks & Quicken export', 'Bulk upload (10 files)', 'Priority support'], cta: 'Upgrade to Pro', disabled: false, highlight: true },
+    { name: 'Business', price: '$29', features: ['Everything in Pro', 'Xero integration', 'API access', 'Team features (5 seats)'], cta: 'Contact Sales', disabled: false, highlight: false },
   ];
 
   return (
@@ -335,30 +420,348 @@ function TermsOfServiceModal({ onClose }) {
 }
 
 // ============================================
-// TRANSACTION TABLE - with QBO export
+// XERO INTEGRATION MODAL
 // ============================================
-function TransactionTable({ data, onExport, onUploadAnother, userPlan, bank }) {
+function XeroModal({ onClose, onConnect, isConnected, onDisconnect }) {
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div className="p-6 bg-gradient-to-r from-[#13B5EA] to-[#0D94C7] text-white relative">
+          <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white"><Icons.X /></button>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
+              <span className="text-[#13B5EA] font-bold text-xl">X</span>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">Xero Integration</h2>
+              <p className="text-blue-100">Sync transactions directly to Xero</p>
+            </div>
+          </div>
+        </div>
+        <div className="p-6">
+          {isConnected ? (
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <Icons.CheckCircle />
+                <div>
+                  <p className="font-medium text-green-800">Connected to Xero</p>
+                  <p className="text-sm text-green-600">Your account is linked</p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-medium text-gray-700">What you can do:</p>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li className="flex items-center gap-2"><Icons.Check size={16} /><span>Export transactions to Xero</span></li>
+                  <li className="flex items-center gap-2"><Icons.Check size={16} /><span>Auto-match to bank feeds</span></li>
+                  <li className="flex items-center gap-2"><Icons.Check size={16} /><span>Sync categories & accounts</span></li>
+                </ul>
+              </div>
+              <button onClick={onDisconnect} className="w-full py-3 border border-red-300 text-red-600 rounded-lg font-medium hover:bg-red-50">Disconnect Xero</button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <p className="text-sm font-medium text-gray-700">Connect your Xero account to:</p>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li className="flex items-center gap-2"><Icons.Check size={16} /><span>Export transactions directly to Xero</span></li>
+                  <li className="flex items-center gap-2"><Icons.Check size={16} /><span>Auto-match with bank reconciliation</span></li>
+                  <li className="flex items-center gap-2"><Icons.Check size={16} /><span>Sync categories & chart of accounts</span></li>
+                </ul>
+              </div>
+              <button onClick={onConnect} className="w-full py-3 bg-[#13B5EA] text-white rounded-lg font-semibold hover:bg-[#0D94C7] flex items-center justify-center gap-2">
+                <Icons.Link /><span>Connect to Xero</span>
+              </button>
+              <p className="text-xs text-gray-500 text-center">Requires Business plan. Secure OAuth connection.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// API ACCESS MODAL
+// ============================================
+function APIModal({ onClose, apiKey, onGenerateKey, onRevokeKey }) {
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = () => {
+    if (apiKey) {
+      navigator.clipboard.writeText(apiKey);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden my-8">
+        <div className="p-6 bg-gradient-to-r from-gray-800 to-gray-900 text-white relative">
+          <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white"><Icons.X /></button>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center"><Icons.Code /></div>
+            <div>
+              <h2 className="text-2xl font-bold">API Access</h2>
+              <p className="text-gray-300">Integrate StatementPro into your apps</p>
+            </div>
+          </div>
+        </div>
+        <div className="p-6 space-y-6">
+          {/* API Key Section */}
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-3">Your API Key</h3>
+            {apiKey ? (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <code className="flex-1 px-4 py-3 bg-gray-100 rounded-lg font-mono text-sm text-gray-800 overflow-x-auto">{apiKey}</code>
+                  <button onClick={copyToClipboard} className="p-3 bg-gray-100 rounded-lg hover:bg-gray-200" title="Copy">
+                    {copied ? <Icons.Check size={16} /> : <Icons.Copy />}
+                  </button>
+                </div>
+                <button onClick={onRevokeKey} className="text-sm text-red-600 hover:text-red-700">Revoke & Generate New Key</button>
+              </div>
+            ) : (
+              <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg text-center">
+                <p className="text-gray-600 mb-3">No API key generated yet</p>
+                <button onClick={onGenerateKey} className="bg-emerald-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-600">Generate API Key</button>
+              </div>
+            )}
+          </div>
+
+          {/* Endpoints */}
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-3">API Endpoints</h3>
+            <div className="space-y-3">
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded">POST</span>
+                  <code className="text-sm font-mono">/api/v1/convert</code>
+                </div>
+                <p className="text-sm text-gray-600">Upload and convert a bank statement PDF</p>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded">GET</span>
+                  <code className="text-sm font-mono">/api/v1/conversions/:id</code>
+                </div>
+                <p className="text-sm text-gray-600">Retrieve conversion results by ID</p>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded">GET</span>
+                  <code className="text-sm font-mono">/api/v1/usage</code>
+                </div>
+                <p className="text-sm text-gray-600">Check your API usage and limits</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Rate Limits */}
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <h4 className="font-medium text-amber-800 mb-2">Rate Limits</h4>
+            <ul className="text-sm text-amber-700 space-y-1">
+              <li>• Business plan: 1,000 requests/day</li>
+              <li>• Max file size: 10MB per request</li>
+              <li>• Concurrent requests: 5</li>
+            </ul>
+          </div>
+
+          {/* Docs Link */}
+          <div className="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
+            <span className="text-gray-700">Need help integrating?</span>
+            <a href="#" className="flex items-center gap-1 text-emerald-600 font-medium hover:text-emerald-700">View Documentation <Icons.ExternalLink /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// TEAM MANAGEMENT MODAL
+// ============================================
+function TeamModal({ onClose, team, onInvite, onRemoveMember, onUpdateRole }) {
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteRole, setInviteRole] = useState('member');
+  const [inviting, setInviting] = useState(false);
+
+  const handleInvite = async (e) => {
+    e.preventDefault();
+    if (!inviteEmail) return;
+    setInviting(true);
+    await onInvite(inviteEmail, inviteRole);
+    setInviteEmail('');
+    setInviting(false);
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden my-8">
+        <div className="p-6 bg-gradient-to-r from-purple-500 to-indigo-600 text-white relative">
+          <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white"><Icons.X /></button>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center"><Icons.Users /></div>
+            <div>
+              <h2 className="text-2xl font-bold">Team Management</h2>
+              <p className="text-purple-100">Manage your team members and permissions</p>
+            </div>
+          </div>
+        </div>
+        <div className="p-6 space-y-6">
+          {/* Invite Form */}
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-3">Invite Team Member</h3>
+            <form onSubmit={handleInvite} className="flex gap-3">
+              <input type="email" value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="colleague@company.com" className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500" required />
+              <select value={inviteRole} onChange={(e) => setInviteRole(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-lg">
+                <option value="member">Member</option>
+                <option value="admin">Admin</option>
+              </select>
+              <button type="submit" disabled={inviting} className="px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 disabled:opacity-50">
+                {inviting ? 'Inviting...' : 'Invite'}
+              </button>
+            </form>
+          </div>
+
+          {/* Team Members */}
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-3">Team Members ({team?.length || 0})</h3>
+            <div className="border border-gray-200 rounded-lg divide-y divide-gray-200">
+              {team && team.length > 0 ? team.map((member, idx) => (
+                <div key={idx} className="flex items-center justify-between p-4 hover:bg-gray-50">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-semibold">
+                      {member.name?.charAt(0) || member.email?.charAt(0) || '?'}
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">{member.name || member.email}</p>
+                      <p className="text-sm text-gray-500">{member.email}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <select value={member.role} onChange={(e) => onUpdateRole(member.id, e.target.value)} className="px-2 py-1 text-sm border border-gray-200 rounded" disabled={member.role === 'owner'}>
+                      <option value="owner" disabled>Owner</option>
+                      <option value="admin">Admin</option>
+                      <option value="member">Member</option>
+                    </select>
+                    {member.role !== 'owner' && (
+                      <button onClick={() => onRemoveMember(member.id)} className="text-red-500 hover:text-red-600"><Icons.X /></button>
+                    )}
+                  </div>
+                </div>
+              )) : (
+                <div className="p-8 text-center text-gray-500">
+                  <Icons.Users />
+                  <p className="mt-2">No team members yet</p>
+                  <p className="text-sm">Invite colleagues to collaborate</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Permissions Info */}
+          <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+            <h4 className="font-medium text-purple-800 mb-2">Role Permissions</h4>
+            <ul className="text-sm text-purple-700 space-y-1">
+              <li><strong>Owner:</strong> Full access, billing, team management</li>
+              <li><strong>Admin:</strong> Convert, export, invite members</li>
+              <li><strong>Member:</strong> Convert and export only</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// BALANCE VERIFICATION DISPLAY
+// ============================================
+function BalanceVerificationPanel({ verification, onClose }) {
+  if (!verification) return null;
+
+  return (
+    <div className="mt-4 p-4 rounded-lg border" style={{ borderColor: verification.valid ? '#10b981' : '#f59e0b', backgroundColor: verification.valid ? '#ecfdf5' : '#fffbeb' }}>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          {verification.valid ? <Icons.CheckCircle /> : <Icons.AlertCircle />}
+          <span className="font-semibold" style={{ color: verification.valid ? '#059669' : '#d97706' }}>
+            {verification.valid ? 'Balance Verified' : 'Balance Discrepancies Found'}
+          </span>
+        </div>
+        <button onClick={onClose} className="text-gray-400 hover:text-gray-600"><Icons.X /></button>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3">
+        <div className="text-center p-2 bg-white rounded">
+          <p className="text-xs text-gray-500">Opening</p>
+          <p className="font-semibold">${verification.summary.openingBalance.toFixed(2)}</p>
+        </div>
+        <div className="text-center p-2 bg-white rounded">
+          <p className="text-xs text-gray-500">Closing</p>
+          <p className="font-semibold">${verification.summary.closingBalance.toFixed(2)}</p>
+        </div>
+        <div className="text-center p-2 bg-white rounded">
+          <p className="text-xs text-gray-500">Credits</p>
+          <p className="font-semibold text-emerald-600">+${verification.summary.totalCredits.toFixed(2)}</p>
+        </div>
+        <div className="text-center p-2 bg-white rounded">
+          <p className="text-xs text-gray-500">Debits</p>
+          <p className="font-semibold text-red-600">-${verification.summary.totalDebits.toFixed(2)}</p>
+        </div>
+      </div>
+
+      {!verification.valid && verification.errors.length > 0 && (
+        <div className="mt-3">
+          <p className="text-sm font-medium text-amber-800 mb-2">Discrepancies ({verification.errors.length}):</p>
+          <div className="max-h-32 overflow-y-auto">
+            {verification.errors.slice(0, 5).map((err, idx) => (
+              <div key={idx} className="text-xs text-amber-700 py-1">
+                Row {err.row} ({err.date}): Expected ${err.expected}, got ${err.actual} (diff: ${err.difference})
+              </div>
+            ))}
+            {verification.errors.length > 5 && <p className="text-xs text-amber-600">...and {verification.errors.length - 5} more</p>}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============================================
+// TRANSACTION TABLE - with QBO/QIF export and balance verification
+// ============================================
+function TransactionTable({ data, onExport, onUploadAnother, userPlan, bank, onVerifyBalance, verification, onClearVerification }) {
   const [selectedFormat, setSelectedFormat] = useState('xlsx');
   if (!data || data.length === 0) return null;
 
   const isPro = userPlan === 'pro' || userPlan === 'business';
+  const isBusiness = userPlan === 'business';
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
       <div className="p-4 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4">
-        <div><h3 className="font-semibold text-gray-900">Extracted Transactions</h3><p className="text-sm text-gray-500">{data.length} transactions found</p></div>
+        <div>
+          <h3 className="font-semibold text-gray-900">Extracted Transactions</h3>
+          <p className="text-sm text-gray-500">{data.length} transactions found</p>
+        </div>
         <div className="flex items-center gap-3">
+          <button onClick={onVerifyBalance} className="flex items-center gap-1 px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50" title="Verify Balances">
+            <Icons.CheckCircle /><span className="hidden sm:inline">Verify</span>
+          </button>
           <select value={selectedFormat} onChange={(e) => setSelectedFormat(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
             <option value="xlsx">Excel (.xlsx)</option>
             <option value="csv">CSV (.csv)</option>
             <option value="qbo">QuickBooks (.qbo) {!isPro && '🔒'}</option>
+            <option value="qif">Quicken (.qif) {!isPro && '🔒'}</option>
           </select>
-          <button 
-            onClick={() => onExport(selectedFormat)} 
-            disabled={selectedFormat === 'qbo' && !isPro}
+          <button
+            onClick={() => onExport(selectedFormat)}
+            disabled={(selectedFormat === 'qbo' || selectedFormat === 'qif') && !isPro}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium ${
-              selectedFormat === 'qbo' && !isPro 
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+              (selectedFormat === 'qbo' || selectedFormat === 'qif') && !isPro
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 : 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700'
             }`}
           >
@@ -366,13 +769,15 @@ function TransactionTable({ data, onExport, onUploadAnother, userPlan, bank }) {
           </button>
         </div>
       </div>
-      
-      {selectedFormat === 'qbo' && !isPro && (
+
+      {(selectedFormat === 'qbo' || selectedFormat === 'qif') && !isPro && (
         <div className="px-4 py-3 bg-amber-50 border-b border-amber-200 flex items-center gap-2 text-sm text-amber-800">
           <Icons.Calculator />
-          <span>QuickBooks export is available on Pro plan. <button onClick={() => {}} className="underline font-medium">Upgrade for $9/mo</button></span>
+          <span>{selectedFormat === 'qbo' ? 'QuickBooks' : 'Quicken'} export is available on Pro plan. <button onClick={() => {}} className="underline font-medium">Upgrade for $9/mo</button></span>
         </div>
       )}
+
+      {verification && <div className="px-4"><BalanceVerificationPanel verification={verification} onClose={onClearVerification} /></div>}
       
       <div className="overflow-x-auto">
         <table className="w-full">
@@ -463,7 +868,14 @@ export default function App() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showSampleOutput, setShowSampleOutput] = useState(false);
+  const [showXero, setShowXero] = useState(false);
+  const [showAPI, setShowAPI] = useState(false);
+  const [showTeam, setShowTeam] = useState(false);
   const [conversionCount, setConversionCount] = useState(0);
+  const [xeroConnected, setXeroConnected] = useState(false);
+  const [apiKey, setApiKey] = useState(null);
+  const [team, setTeam] = useState([]);
+  const [balanceVerification, setBalanceVerification] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -602,6 +1014,18 @@ export default function App() {
       return;
     }
 
+    if (format === 'qif') {
+      if (!isPro) {
+        setError('Quicken export requires Pro plan. Upgrade for $9/mo!');
+        setShowPricing(true);
+        return;
+      }
+      const qifContent = generateQIFFile(transactions, fileName);
+      const blob = new Blob([qifContent], { type: 'application/qif' });
+      downloadBlob(blob, `${baseName}_quicken.qif`);
+      return;
+    }
+
     if (format === 'csv') {
       const headers = ['Date', 'Description', 'Amount', 'Type', 'Category', 'Balance'];
       const rows = transactions.map(tx => [tx.date, `"${(tx.description || '').replace(/"/g, '""')}"`, tx.amount, tx.type, tx.category || '', tx.balance || '']);
@@ -639,7 +1063,112 @@ export default function App() {
 
   const scrollToConverter = () => document.getElementById('converter')?.scrollIntoView({ behavior: 'smooth' });
   
-  const handleUploadAnother = () => { setFiles([]); setExtractedData(null); setSuccess(null); };
+  const handleUploadAnother = () => { setFiles([]); setExtractedData(null); setSuccess(null); setBalanceVerification(null); };
+
+  // Balance Verification
+  const handleVerifyBalance = () => {
+    if (!extractedData?.transactions) return;
+    const result = verifyBalances(extractedData.transactions);
+    setBalanceVerification(result);
+  };
+
+  // Xero Integration
+  const handleConnectXero = async () => {
+    if (user?.plan !== 'business') {
+      setError('Xero integration requires Business plan.');
+      setShowPricing(true);
+      return;
+    }
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${API_URL}/api/integrations/xero/connect`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.authUrl) window.location.href = data.authUrl;
+      else if (data.connected) setXeroConnected(true);
+    } catch { setError('Failed to connect to Xero'); }
+  };
+
+  const handleDisconnectXero = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      await fetch(`${API_URL}/api/integrations/xero/disconnect`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setXeroConnected(false);
+    } catch { setError('Failed to disconnect Xero'); }
+  };
+
+  // API Key Management
+  const handleGenerateAPIKey = async () => {
+    if (user?.plan !== 'business') {
+      setError('API access requires Business plan.');
+      setShowPricing(true);
+      return;
+    }
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${API_URL}/api/developer/keys`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.apiKey) setApiKey(data.apiKey);
+    } catch { setError('Failed to generate API key'); }
+  };
+
+  const handleRevokeAPIKey = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      await fetch(`${API_URL}/api/developer/keys`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setApiKey(null);
+      handleGenerateAPIKey();
+    } catch { setError('Failed to revoke API key'); }
+  };
+
+  // Team Management
+  const handleInviteTeamMember = async (email, role) => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${API_URL}/api/team/invite`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ email, role })
+      });
+      const data = await res.json();
+      if (data.member) setTeam(prev => [...prev, data.member]);
+      setSuccess(`Invitation sent to ${email}`);
+    } catch { setError('Failed to invite team member'); }
+  };
+
+  const handleRemoveTeamMember = async (memberId) => {
+    try {
+      const token = localStorage.getItem('token');
+      await fetch(`${API_URL}/api/team/members/${memberId}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setTeam(prev => prev.filter(m => m.id !== memberId));
+    } catch { setError('Failed to remove team member'); }
+  };
+
+  const handleUpdateMemberRole = async (memberId, role) => {
+    try {
+      const token = localStorage.getItem('token');
+      await fetch(`${API_URL}/api/team/members/${memberId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ role })
+      });
+      setTeam(prev => prev.map(m => m.id === memberId ? { ...m, role } : m));
+    } catch { setError('Failed to update role'); }
+  };
 
   const testimonials = [
     { name: 'Jennifer M.', role: 'CPA', quote: 'Saved me hours during tax season. The QuickBooks export is a game changer!', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
@@ -665,10 +1194,24 @@ export default function App() {
             <div className="flex items-center gap-4">
               {user ? (
                 <>
+                  {user.plan === 'business' && (
+                    <div className="hidden md:flex items-center gap-2">
+                      <button onClick={() => setShowXero(true)} className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900" title="Xero Integration">
+                        <Icons.Link /><span className="hidden lg:inline">Xero</span>
+                      </button>
+                      <button onClick={() => setShowAPI(true)} className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900" title="API Access">
+                        <Icons.Code /><span className="hidden lg:inline">API</span>
+                      </button>
+                      <button onClick={() => setShowTeam(true)} className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900" title="Team Management">
+                        <Icons.Users /><span className="hidden lg:inline">Team</span>
+                      </button>
+                    </div>
+                  )}
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
                     <Icons.User />
                     <span className="text-sm font-medium text-gray-700 hidden sm:inline">{user.name || user.email?.split('@')[0]}</span>
-                    {(user.plan === 'pro' || user.plan === 'business') && <span className="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">PRO</span>}
+                    {user.plan === 'business' && <span className="bg-purple-500 text-white text-xs px-2 py-0.5 rounded-full">BIZ</span>}
+                    {user.plan === 'pro' && <span className="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">PRO</span>}
                   </div>
                   <button onClick={handleLogout} className="text-gray-500 hover:text-gray-700 text-sm">Sign Out</button>
                 </>
@@ -783,7 +1326,20 @@ export default function App() {
             </div>
           )}
 
-          {extractedData?.transactions && <div className="mt-8"><TransactionTable data={extractedData.transactions} onExport={handleExport} onUploadAnother={handleUploadAnother} userPlan={user?.plan} bank={extractedData.bank} /></div>}
+          {extractedData?.transactions && (
+            <div className="mt-8">
+              <TransactionTable
+                data={extractedData.transactions}
+                onExport={handleExport}
+                onUploadAnother={handleUploadAnother}
+                userPlan={user?.plan}
+                bank={extractedData.bank}
+                onVerifyBalance={handleVerifyBalance}
+                verification={balanceVerification}
+                onClearVerification={() => setBalanceVerification(null)}
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -794,11 +1350,11 @@ export default function App() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { icon: <Icons.Zap />, title: 'Lightning Fast', desc: 'Convert in seconds', color: 'bg-yellow-100 text-yellow-600' },
-              { icon: <Icons.Calculator />, title: 'QuickBooks Ready', desc: 'Export to .QBO format', color: 'bg-green-100 text-green-600' },
-              { icon: <Icons.Lock />, title: 'Bank-Level Security', desc: 'Encrypted & auto-deleted', color: 'bg-emerald-100 text-emerald-600' },
-              { icon: <Icons.RefreshCw />, title: 'High Accuracy', desc: 'AI-powered extraction', color: 'bg-purple-100 text-purple-600' },
-              { icon: <Icons.CreditCard />, title: 'Multiple Formats', desc: 'Excel, CSV, QBO export', color: 'bg-pink-100 text-pink-600' },
-              { icon: <Icons.Globe />, title: 'Works Worldwide', desc: '50+ currencies', color: 'bg-indigo-100 text-indigo-600' },
+              { icon: <Icons.Calculator />, title: 'QuickBooks & Quicken', desc: 'Export to QBO & QIF', color: 'bg-green-100 text-green-600' },
+              { icon: <Icons.Link />, title: 'Xero Integration', desc: 'Sync directly to Xero', color: 'bg-blue-100 text-blue-600' },
+              { icon: <Icons.CheckCircle />, title: 'Balance Verification', desc: 'Auto-verify accuracy', color: 'bg-emerald-100 text-emerald-600' },
+              { icon: <Icons.Code />, title: 'API Access', desc: 'Build custom integrations', color: 'bg-purple-100 text-purple-600' },
+              { icon: <Icons.Users />, title: 'Team Features', desc: 'Collaborate with your team', color: 'bg-pink-100 text-pink-600' },
             ].map((f, i) => (
               <div key={i} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
                 <div className={`w-14 h-14 ${f.color} rounded-xl flex items-center justify-center mb-6`}>{f.icon}</div>
@@ -851,9 +1407,9 @@ export default function App() {
           <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">Simple Pricing</h2><p className="text-gray-600">4x cheaper than competitors. No page limits.</p></div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/mo`, 'Excel & CSV export', 'PDF & image upload'], cta: 'Get Started', highlight: false },
-              { name: 'Pro', price: '$9', features: ['Unlimited conversions', 'QuickBooks QBO export', 'Bulk upload (10 files)', 'Priority support'], cta: 'Start Trial', highlight: true },
-              { name: 'Business', price: '$29', features: ['Everything in Pro', 'API access', 'Team features'], cta: 'Contact Sales', highlight: false },
+              { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/mo`, 'Excel & CSV export', 'Balance verification'], cta: 'Get Started', highlight: false },
+              { name: 'Pro', price: '$9', features: ['Unlimited conversions', 'QuickBooks & Quicken export', 'Bulk upload (10 files)', 'Priority support'], cta: 'Start Trial', highlight: true },
+              { name: 'Business', price: '$29', features: ['Everything in Pro', 'Xero integration', 'API access', 'Team features (5 seats)'], cta: 'Contact Sales', highlight: false },
             ].map((p, i) => (
               <div key={i} className={`rounded-2xl p-8 ${p.highlight ? 'bg-gradient-to-b from-emerald-50 to-teal-50 border-2 border-emerald-500 relative shadow-xl' : 'bg-white border border-gray-200'}`}>
                 {p.highlight && <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-sm font-bold px-4 py-1 rounded-full">POPULAR</div>}
@@ -873,9 +1429,10 @@ export default function App() {
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">FAQ</h2>
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 px-8">
             <FAQItem question="Which banks do you support?" answer="All major US banks including Chase, Bank of America, Wells Fargo, Citi, and 100+ more." />
-            <FAQItem question="Can I import to QuickBooks?" answer="Yes! Pro users can export to .QBO format which imports directly into QuickBooks Online and Desktop." />
+            <FAQItem question="Can I import to QuickBooks or Quicken?" answer="Yes! Pro users can export to .QBO (QuickBooks) and .QIF (Quicken) formats which import directly into both platforms." />
+            <FAQItem question="Do you integrate with Xero?" answer="Yes! Business plan users can connect their Xero account and sync transactions directly for bank reconciliation." />
             <FAQItem question="Is my data secure?" answer="Yes. 256-bit SSL encryption, files auto-deleted in 24 hours. We never store your bank data." />
-            <FAQItem question="How accurate is conversion?" answer="Our AI provides high accuracy. We recommend verifying output for critical financial work." />
+            <FAQItem question="Do you have an API?" answer="Yes! Business plan includes API access with 1,000 requests/day for custom integrations." />
           </div>
         </div>
       </section>
@@ -910,6 +1467,9 @@ export default function App() {
       {showPrivacy && <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />}
       {showTerms && <TermsOfServiceModal onClose={() => setShowTerms(false)} />}
       {showSampleOutput && <SampleOutputModal onClose={() => setShowSampleOutput(false)} />}
+      {showXero && <XeroModal onClose={() => setShowXero(false)} onConnect={handleConnectXero} isConnected={xeroConnected} onDisconnect={handleDisconnectXero} />}
+      {showAPI && <APIModal onClose={() => setShowAPI(false)} apiKey={apiKey} onGenerateKey={handleGenerateAPIKey} onRevokeKey={handleRevokeAPIKey} />}
+      {showTeam && <TeamModal onClose={() => setShowTeam(false)} team={team} onInvite={handleInviteTeamMember} onRemoveMember={handleRemoveTeamMember} onUpdateRole={handleUpdateMemberRole} />}
 
       <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .animate-spin { animation: spin 1s linear infinite; } html { scroll-behavior: smooth; }`}</style>
     </div>
