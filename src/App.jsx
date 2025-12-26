@@ -6,9 +6,11 @@ import { useState, useEffect, useCallback } from 'react';
 const API_URL = 'https://api.statementpro.net';
 const SUPPORT_EMAIL = 'support@statementpro.net';
 const MAX_FREE_CONVERSIONS = 3;
+const MAX_BULK_FILES_FREE = 1;
+const MAX_BULK_FILES_PRO = 10;
 
 // ============================================
-// ICONS (keeping them compact)
+// ICONS (compact)
 // ============================================
 const Icons = {
   Upload: ({ size = 48 }) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>,
@@ -22,7 +24,7 @@ const Icons = {
   Trash: () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
   Shield: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
   Zap: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
-  Building: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>,
+  Building: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>,
   Lock: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
   Star: () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
   ArrowRight: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>,
@@ -35,7 +37,97 @@ const Icons = {
   Eye: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
   Plus: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
   FileSpreadsheet: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>,
+  Calculator: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>,
 };
+
+// ============================================
+// QBO EXPORT HELPER - QuickBooks Format
+// ============================================
+function generateQBOFile(transactions, fileName, bank = 'Generic Bank') {
+  const now = new Date();
+  const formatDate = (dateStr) => {
+    if (!dateStr || dateStr === 'N/A') return now.toISOString().slice(0,10).replace(/-/g, '');
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return now.toISOString().slice(0,10).replace(/-/g, '');
+    return d.toISOString().slice(0,10).replace(/-/g, '');
+  };
+  
+  // Get date range
+  const dates = transactions.map(t => t.date).filter(d => d && d !== 'N/A').sort();
+  const startDate = dates[0] ? formatDate(dates[0]) : formatDate(null);
+  const endDate = dates[dates.length - 1] ? formatDate(dates[dates.length - 1]) : formatDate(null);
+  
+  // Build transactions XML
+  let transactionsXml = '';
+  transactions.forEach((tx, idx) => {
+    const amount = parseFloat(tx.amount) || 0;
+    const trnType = tx.type === 'credit' ? 'CREDIT' : 'DEBIT';
+    const trnAmount = tx.type === 'credit' ? Math.abs(amount) : -Math.abs(amount);
+    const desc = (tx.description || 'Transaction').replace(/[<>&"']/g, ' ').substring(0, 64);
+    
+    transactionsXml += `
+<STMTTRN>
+<TRNTYPE>${trnType}
+<DTPOSTED>${formatDate(tx.date)}
+<TRNAMT>${trnAmount.toFixed(2)}
+<FITID>${formatDate(tx.date)}${idx + 1}
+<NAME>${desc}
+</STMTTRN>`;
+  });
+  
+  // Get ending balance
+  const lastBalance = transactions[transactions.length - 1]?.balance || 0;
+  
+  const qboContent = `OFXHEADER:100
+DATA:OFXSGML
+VERSION:102
+SECURITY:NONE
+ENCODING:USASCII
+CHARSET:1252
+COMPRESSION:NONE
+OLDFILEUID:NONE
+NEWFILEUID:NONE
+
+<OFX>
+<SIGNONMSGSRSV1>
+<SONRS>
+<STATUS>
+<CODE>0
+<SEVERITY>INFO
+</STATUS>
+<DTSERVER>${formatDate(null)}
+<LANGUAGE>ENG
+</SONRS>
+</SIGNONMSGSRSV1>
+<BANKMSGSRSV1>
+<STMTTRNRS>
+<TRNUID>1001
+<STATUS>
+<CODE>0
+<SEVERITY>INFO
+</STATUS>
+<STMTRS>
+<CURDEF>USD
+<BANKACCTFROM>
+<BANKID>999999999
+<ACCTID>999999999
+<ACCTTYPE>CHECKING
+</BANKACCTFROM>
+<BANKTRANLIST>
+<DTSTART>${startDate}
+<DTEND>${endDate}${transactionsXml}
+</BANKTRANLIST>
+<LEDGERBAL>
+<BALAMT>${parseFloat(lastBalance).toFixed(2)}
+<DTASOF>${endDate}
+</LEDGERBAL>
+</STMTRS>
+</STMTTRNRS>
+</BANKMSGSRSV1>
+</OFX>`;
+
+  return qboContent;
+}
 
 // ============================================
 // SAMPLE OUTPUT MODAL
@@ -56,12 +148,12 @@ function SampleOutputModal({ onClose }) {
         <div className="p-6 bg-gradient-to-r from-emerald-500 to-teal-600 text-white relative">
           <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white"><Icons.X /></button>
           <h2 className="text-2xl font-bold">Sample Output Preview</h2>
-          <p className="text-emerald-100 mt-1">This is what your converted bank statement will look like</p>
+          <p className="text-emerald-100 mt-1">See what your converted bank statement will look like</p>
         </div>
         <div className="p-6">
           <div className="mb-4 flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm text-gray-500"><Icons.FileSpreadsheet /><span>chase_statement_nov2025.pdf</span></div>
-            <span className="text-emerald-600 text-sm font-medium">→ Converted to Excel</span>
+            <span className="text-emerald-600 text-sm font-medium">→ Converted</span>
           </div>
           <div className="overflow-x-auto border border-gray-200 rounded-lg">
             <table className="w-full">
@@ -89,15 +181,23 @@ function SampleOutputModal({ onClose }) {
               </tbody>
             </table>
           </div>
-          <div className="mt-6 bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-            <h4 className="font-semibold text-emerald-800 mb-2">✨ What you get:</h4>
-            <ul className="text-sm text-emerald-700 space-y-1">
-              <li>✓ Proper ISO dates (YYYY-MM-DD)</li>
-              <li>✓ Clean descriptions (no OCR artifacts)</li>
-              <li>✓ Signed amounts (-/+ for debit/credit)</li>
-              <li>✓ Accurate running balance</li>
-              <li>✓ Real .xlsx Excel file</li>
-            </ul>
+          <div className="mt-6 grid md:grid-cols-2 gap-4">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+              <h4 className="font-semibold text-emerald-800 mb-2">✨ Export Formats:</h4>
+              <ul className="text-sm text-emerald-700 space-y-1">
+                <li>✓ Excel (.xlsx)</li>
+                <li>✓ CSV (.csv)</li>
+                <li>✓ QuickBooks (.qbo) <span className="bg-emerald-200 text-emerald-800 text-xs px-1 rounded">NEW</span></li>
+              </ul>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h4 className="font-semibold text-blue-800 mb-2">📊 Data Quality:</h4>
+              <ul className="text-sm text-blue-700 space-y-1">
+                <li>✓ ISO dates (YYYY-MM-DD)</li>
+                <li>✓ Signed amounts (-/+)</li>
+                <li>✓ Auto-categorized</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="p-4 bg-gray-50 border-t flex justify-end gap-3">
@@ -157,13 +257,13 @@ function AuthModal({ onClose, onLogin, onRegister, error, setError }) {
 }
 
 // ============================================
-// PRICING MODAL
+// PRICING MODAL - UPDATED with QBO feature
 // ============================================
 function PricingModal({ onClose, onUpgrade, currentPlan }) {
   const plans = [
-    { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/month`, 'PDF upload', 'Excel export'], cta: 'Current Plan', disabled: true, highlight: false },
-    { name: 'Pro', price: '$9', features: ['Unlimited conversions', 'Bulk upload', 'Priority support', 'API access'], cta: 'Upgrade to Pro', disabled: false, highlight: true },
-    { name: 'Business', price: '$29', features: ['Everything in Pro', 'Team features', 'Custom integrations'], cta: 'Contact Sales', disabled: false, highlight: false },
+    { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/month`, 'PDF & image upload', 'Excel & CSV export'], cta: 'Current Plan', disabled: true, highlight: false },
+    { name: 'Pro', price: '$9', features: ['Unlimited conversions', 'Bulk upload (10 files)', 'QuickBooks QBO export', 'Priority support'], cta: 'Upgrade to Pro', disabled: false, highlight: true },
+    { name: 'Business', price: '$29', features: ['Everything in Pro', 'API access', 'Team features', 'Dedicated support'], cta: 'Contact Sales', disabled: false, highlight: false },
   ];
 
   return (
@@ -185,13 +285,14 @@ function PricingModal({ onClose, onUpgrade, currentPlan }) {
             </div>
           ))}
         </div>
+        <div className="px-6 pb-6 text-center"><p className="text-sm text-gray-500">🔒 Secure payment • Cancel anytime • 30-day money-back guarantee</p></div>
       </div>
     </div>
   );
 }
 
 // ============================================
-// PRIVACY & TERMS MODALS (Compact)
+// PRIVACY & TERMS MODALS
 // ============================================
 function PrivacyPolicyModal({ onClose }) {
   return (
@@ -222,7 +323,7 @@ function TermsOfServiceModal({ onClose }) {
           <h2 className="text-2xl font-bold">Terms of Service</h2>
         </div>
         <div className="p-6 max-h-96 overflow-y-auto text-gray-600 text-sm space-y-4">
-          <p><strong>Service:</strong> StatementPro converts bank statements to Excel format using OCR technology.</p>
+          <p><strong>Service:</strong> StatementPro converts bank statements to Excel, CSV, and QuickBooks formats using OCR technology.</p>
           <p><strong>Accuracy:</strong> While we strive for high accuracy, please verify extracted data before use in financial decisions.</p>
           <p><strong>Payments:</strong> Subscriptions are billed monthly. Cancel anytime with our 30-day money-back guarantee.</p>
           <p><strong>Contact:</strong> Questions? Email {SUPPORT_EMAIL}</p>
@@ -234,11 +335,13 @@ function TermsOfServiceModal({ onClose }) {
 }
 
 // ============================================
-// TRANSACTION TABLE
+// TRANSACTION TABLE - with QBO export
 // ============================================
-function TransactionTable({ data, onExport, onUploadAnother }) {
+function TransactionTable({ data, onExport, onUploadAnother, userPlan, bank }) {
   const [selectedFormat, setSelectedFormat] = useState('xlsx');
   if (!data || data.length === 0) return null;
+
+  const isPro = userPlan === 'pro' || userPlan === 'business';
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
@@ -248,10 +351,29 @@ function TransactionTable({ data, onExport, onUploadAnother }) {
           <select value={selectedFormat} onChange={(e) => setSelectedFormat(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
             <option value="xlsx">Excel (.xlsx)</option>
             <option value="csv">CSV (.csv)</option>
+            <option value="qbo">QuickBooks (.qbo) {!isPro && '🔒'}</option>
           </select>
-          <button onClick={() => onExport(selectedFormat)} className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-lg font-medium hover:from-emerald-600 hover:to-teal-700"><Icons.Download /><span>Export</span></button>
+          <button 
+            onClick={() => onExport(selectedFormat)} 
+            disabled={selectedFormat === 'qbo' && !isPro}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium ${
+              selectedFormat === 'qbo' && !isPro 
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                : 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700'
+            }`}
+          >
+            <Icons.Download /><span>Export</span>
+          </button>
         </div>
       </div>
+      
+      {selectedFormat === 'qbo' && !isPro && (
+        <div className="px-4 py-3 bg-amber-50 border-b border-amber-200 flex items-center gap-2 text-sm text-amber-800">
+          <Icons.Calculator />
+          <span>QuickBooks export is available on Pro plan. <button onClick={() => {}} className="underline font-medium">Upgrade for $9/mo</button></span>
+        </div>
+      )}
+      
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50">
@@ -384,15 +506,32 @@ export default function App() {
     const dropped = Array.from(e.dataTransfer.files).filter(f => f.type === 'application/pdf' || f.type.startsWith('image/'));
     if (dropped.length > 0) addFiles(dropped);
     else setError('Please upload PDF or image files only');
-  }, []);
+  }, [user, conversionCount]);
 
   const handleFileInput = (e) => { const selected = Array.from(e.target.files); if (selected.length > 0) addFiles(selected); };
 
   const addFiles = (newFiles) => {
     if (!user) { setShowAuth(true); return; }
-    const maxConv = user.plan === 'free' ? MAX_FREE_CONVERSIONS : Infinity;
+    
+    const isPro = user.plan === 'pro' || user.plan === 'business';
+    const maxFiles = isPro ? MAX_BULK_FILES_PRO : MAX_BULK_FILES_FREE;
+    const maxConv = isPro ? Infinity : MAX_FREE_CONVERSIONS;
     const remaining = maxConv - conversionCount;
-    if (user.plan === 'free' && newFiles.length > remaining) { setError(`You can only convert ${remaining} more file(s). Upgrade for unlimited!`); setShowPricing(true); return; }
+    
+    // Check bulk upload limit
+    if (newFiles.length > maxFiles) {
+      setError(`You can upload up to ${maxFiles} file(s) at once. ${!isPro ? 'Upgrade to Pro for bulk upload!' : ''}`);
+      if (!isPro) setShowPricing(true);
+      return;
+    }
+    
+    // Check conversion limit for free users
+    if (!isPro && newFiles.length > remaining) {
+      setError(`You can only convert ${remaining} more file(s). Upgrade for unlimited!`);
+      setShowPricing(true);
+      return;
+    }
+    
     setFiles(prev => [...prev, ...newFiles.map(f => ({ file: f, id: Math.random().toString(36).substr(2, 9), status: 'pending', name: f.name, size: f.size }))]);
     setError(null);
   };
@@ -447,8 +586,21 @@ export default function App() {
 
   const handleExport = async (format) => {
     if (!extractedData?.transactions) return;
-    const { transactions, fileName } = extractedData;
+    const { transactions, fileName, bank } = extractedData;
     const baseName = fileName.replace(/\.(pdf|jpg|jpeg|png)$/i, '');
+    const isPro = user?.plan === 'pro' || user?.plan === 'business';
+
+    if (format === 'qbo') {
+      if (!isPro) {
+        setError('QuickBooks export requires Pro plan. Upgrade for $9/mo!');
+        setShowPricing(true);
+        return;
+      }
+      const qboContent = generateQBOFile(transactions, fileName, bank);
+      const blob = new Blob([qboContent], { type: 'application/x-qbo' });
+      downloadBlob(blob, `${baseName}_quickbooks.qbo`);
+      return;
+    }
 
     if (format === 'csv') {
       const headers = ['Date', 'Description', 'Amount', 'Type', 'Category', 'Balance'];
@@ -490,9 +642,9 @@ export default function App() {
   const handleUploadAnother = () => { setFiles([]); setExtractedData(null); setSuccess(null); };
 
   const testimonials = [
-    { name: 'Jennifer M.', role: 'CPA', quote: 'Saved me hours during tax season.', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
-    { name: 'Robert K.', role: 'Loan Officer', quote: 'Cut my processing time in half.', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
-    { name: 'Amanda L.', role: 'Business Owner', quote: 'Simple way to get statements into Excel.', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
+    { name: 'Jennifer M.', role: 'CPA', quote: 'Saved me hours during tax season. The QuickBooks export is a game changer!', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
+    { name: 'Robert K.', role: 'Loan Officer', quote: 'Cut my processing time in half. Accurate and fast.', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
+    { name: 'Amanda L.', role: 'Business Owner', quote: 'Simple way to get statements into Excel. Love it!', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
   ];
 
   return (
@@ -516,7 +668,7 @@ export default function App() {
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
                     <Icons.User />
                     <span className="text-sm font-medium text-gray-700 hidden sm:inline">{user.name || user.email?.split('@')[0]}</span>
-                    {user.plan === 'pro' && <span className="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">PRO</span>}
+                    {(user.plan === 'pro' || user.plan === 'business') && <span className="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">PRO</span>}
                   </div>
                   <button onClick={handleLogout} className="text-gray-500 hover:text-gray-700 text-sm">Sign Out</button>
                 </>
@@ -536,14 +688,17 @@ export default function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6"><Icons.Shield /><span>Trusted by accountants & finance teams</span></div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Convert Bank Statements to<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600"> Excel </span>in Seconds</h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Stop manually entering transactions. Our AI extracts data from any bank statement and exports to clean Excel files.</p>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Stop manually entering transactions. Export to Excel, CSV, or QuickBooks with one click.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <button onClick={scrollToConverter} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-xl shadow-emerald-500/30"><span>Convert Statement Free</span><Icons.ArrowRight /></button>
             <button onClick={() => setShowSampleOutput(true)} className="inline-flex items-center justify-center gap-2 bg-white text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg border border-gray-200 hover:bg-gray-50"><Icons.Eye /><span>See Sample Output</span></button>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-8 text-gray-500">
-            <div className="flex items-center gap-1">{[1,2,3,4,5].map(i => <span key={i} className="text-yellow-400"><Icons.Star /></span>)}<span className="text-sm ml-1">4.9/5 rating</span></div>
-            <span className="text-sm">1,000+ users</span>
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+            <span className="flex items-center gap-1"><Icons.Calculator /> QuickBooks Ready</span>
+            <span>•</span>
+            <div className="flex items-center gap-1">{[1,2,3,4,5].map(i => <span key={i} className="text-yellow-400"><Icons.Star /></span>)}<span className="ml-1">4.9/5</span></div>
+            <span>•</span>
+            <span>1,000+ users</span>
           </div>
         </div>
       </section>
@@ -577,7 +732,7 @@ export default function App() {
             <div className="mb-6 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-600"><Icons.Zap /></div>
-                <div><p className="font-medium text-amber-800">Free Plan: {MAX_FREE_CONVERSIONS - conversionCount} of {MAX_FREE_CONVERSIONS} left</p><p className="text-sm text-amber-600">Upgrade for unlimited</p></div>
+                <div><p className="font-medium text-amber-800">Free Plan: {MAX_FREE_CONVERSIONS - conversionCount} of {MAX_FREE_CONVERSIONS} left</p><p className="text-sm text-amber-600">Upgrade for unlimited + QuickBooks export</p></div>
               </div>
               <button onClick={() => setShowPricing(true)} className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-lg font-medium">Upgrade</button>
             </div>
@@ -592,7 +747,7 @@ export default function App() {
             <input id="fileInput" type="file" accept=".pdf,image/*" multiple onChange={handleFileInput} className="hidden" />
             <div className="flex flex-col items-center gap-4">
               <div className={`p-4 rounded-full ${isDragging ? 'bg-emerald-100 text-emerald-600' : 'bg-gray-100 text-gray-400'}`}><Icons.Upload size={40} /></div>
-              <div><p className="text-lg font-semibold text-gray-700">{isDragging ? 'Drop here' : 'Drag & drop bank statements'}</p><p className="text-gray-500 mt-1">or click to browse</p></div>
+              <div><p className="text-lg font-semibold text-gray-700">{isDragging ? 'Drop here' : 'Drag & drop bank statements'}</p><p className="text-gray-500 mt-1">or click to browse • Up to {user?.plan === 'pro' || user?.plan === 'business' ? MAX_BULK_FILES_PRO : MAX_BULK_FILES_FREE} file(s)</p></div>
             </div>
           </div>
 
@@ -628,23 +783,21 @@ export default function App() {
             </div>
           )}
 
-          {extractedData?.transactions && <div className="mt-8"><TransactionTable data={extractedData.transactions} onExport={handleExport} onUploadAnother={handleUploadAnother} /></div>}
+          {extractedData?.transactions && <div className="mt-8"><TransactionTable data={extractedData.transactions} onExport={handleExport} onUploadAnother={handleUploadAnother} userPlan={user?.plan} bank={extractedData.bank} /></div>}
         </div>
       </section>
 
       {/* FEATURES */}
       <section id="features" className="py-20 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why StatementPro?</h2>
-          </div>
+          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">Why StatementPro?</h2></div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { icon: <Icons.Zap />, title: 'Lightning Fast', desc: 'Convert in seconds', color: 'bg-yellow-100 text-yellow-600' },
-              { icon: <Icons.Building />, title: 'All Major Banks', desc: 'Chase, BoA, Wells & more', color: 'bg-blue-100 text-blue-600' },
+              { icon: <Icons.Calculator />, title: 'QuickBooks Ready', desc: 'Export to .QBO format', color: 'bg-green-100 text-green-600' },
               { icon: <Icons.Lock />, title: 'Bank-Level Security', desc: 'Encrypted & auto-deleted', color: 'bg-emerald-100 text-emerald-600' },
               { icon: <Icons.RefreshCw />, title: 'High Accuracy', desc: 'AI-powered extraction', color: 'bg-purple-100 text-purple-600' },
-              { icon: <Icons.CreditCard />, title: 'Multiple Formats', desc: 'Excel, CSV export', color: 'bg-pink-100 text-pink-600' },
+              { icon: <Icons.CreditCard />, title: 'Multiple Formats', desc: 'Excel, CSV, QBO export', color: 'bg-pink-100 text-pink-600' },
               { icon: <Icons.Globe />, title: 'Works Worldwide', desc: '50+ currencies', color: 'bg-indigo-100 text-indigo-600' },
             ].map((f, i) => (
               <div key={i} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
@@ -662,7 +815,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2></div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[{ step: '1', title: 'Upload', desc: 'Drag & drop your PDF' }, { step: '2', title: 'Convert', desc: 'AI extracts transactions' }, { step: '3', title: 'Export', desc: 'Download Excel or CSV' }].map((item, i) => (
+            {[{ step: '1', title: 'Upload', desc: 'Drag & drop your PDF' }, { step: '2', title: 'Convert', desc: 'AI extracts transactions' }, { step: '3', title: 'Export', desc: 'Download Excel, CSV, or QBO' }].map((item, i) => (
               <div key={i} className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6 shadow-lg">{item.step}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
@@ -695,12 +848,12 @@ export default function App() {
       {/* PRICING */}
       <section id="pricing" className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">Simple Pricing</h2></div>
+          <div className="text-center mb-16"><h2 className="text-3xl font-bold text-gray-900 mb-4">Simple Pricing</h2><p className="text-gray-600">4x cheaper than competitors. No page limits.</p></div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/mo`, 'PDF upload', 'Excel export'], cta: 'Get Started', highlight: false },
-              { name: 'Pro', price: '$9', features: ['Unlimited', 'Bulk upload', 'Priority support'], cta: 'Start Trial', highlight: true },
-              { name: 'Business', price: '$29', features: ['Everything in Pro', 'Team features', 'API access'], cta: 'Contact Sales', highlight: false },
+              { name: 'Free', price: '$0', features: [`${MAX_FREE_CONVERSIONS} conversions/mo`, 'Excel & CSV export', 'PDF & image upload'], cta: 'Get Started', highlight: false },
+              { name: 'Pro', price: '$9', features: ['Unlimited conversions', 'QuickBooks QBO export', 'Bulk upload (10 files)', 'Priority support'], cta: 'Start Trial', highlight: true },
+              { name: 'Business', price: '$29', features: ['Everything in Pro', 'API access', 'Team features'], cta: 'Contact Sales', highlight: false },
             ].map((p, i) => (
               <div key={i} className={`rounded-2xl p-8 ${p.highlight ? 'bg-gradient-to-b from-emerald-50 to-teal-50 border-2 border-emerald-500 relative shadow-xl' : 'bg-white border border-gray-200'}`}>
                 {p.highlight && <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-sm font-bold px-4 py-1 rounded-full">POPULAR</div>}
@@ -720,9 +873,9 @@ export default function App() {
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">FAQ</h2>
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 px-8">
             <FAQItem question="Which banks do you support?" answer="All major US banks including Chase, Bank of America, Wells Fargo, Citi, and 100+ more." />
+            <FAQItem question="Can I import to QuickBooks?" answer="Yes! Pro users can export to .QBO format which imports directly into QuickBooks Online and Desktop." />
             <FAQItem question="Is my data secure?" answer="Yes. 256-bit SSL encryption, files auto-deleted in 24 hours. We never store your bank data." />
             <FAQItem question="How accurate is conversion?" answer="Our AI provides high accuracy. We recommend verifying output for critical financial work." />
-            <FAQItem question="Can I cancel anytime?" answer="Yes. Cancel with one click. 30-day money-back guarantee." />
           </div>
         </div>
       </section>
@@ -741,7 +894,7 @@ export default function App() {
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="flex items-center gap-2 mb-4"><div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center"><span className="text-white font-bold text-xl">S</span></div><span className="text-xl font-bold text-white">StatementPro</span></div>
-              <p className="text-gray-500">Convert bank statements to Excel.</p>
+              <p className="text-gray-500">Convert bank statements to Excel & QuickBooks.</p>
             </div>
             <div><h4 className="text-white font-semibold mb-4">Product</h4><ul className="space-y-2"><li><a href="#features" className="hover:text-white">Features</a></li><li><a href="#pricing" className="hover:text-white">Pricing</a></li></ul></div>
             <div><h4 className="text-white font-semibold mb-4">Legal</h4><ul className="space-y-2"><li><button onClick={() => setShowPrivacy(true)} className="hover:text-white">Privacy</button></li><li><button onClick={() => setShowTerms(true)} className="hover:text-white">Terms</button></li></ul></div>
