@@ -1,4 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
 
 // ============================================
 // CONFIGURATION
@@ -538,7 +541,11 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* Routes */}
+      <Routes>
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="*" element={
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -982,8 +989,8 @@ export default function App() {
               <span className="font-bold text-gray-900">StatementPro</span>
             </div>
             <div className="flex gap-6 text-sm text-gray-500">
-              <button onClick={() => setShowPrivacy(true)} className="hover:text-gray-700">Privacy Policy</button>
-              <button onClick={() => setShowTerms(true)} className="hover:text-gray-700">Terms of Service</button>
+              <a href="/privacy" className="hover:text-gray-700">Privacy Policy</a>
+              <a href="/terms" className="hover:text-gray-700">Terms of Service</a>
               <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-gray-700">Contact</a>
             </div>
           </div>
@@ -992,6 +999,8 @@ export default function App() {
           </p>
         </footer>
       </main>
+        } />
+      </Routes>
 
       {/* Auth Modal */}
       {showAuth && (
