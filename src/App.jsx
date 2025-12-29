@@ -173,6 +173,8 @@ export default function App() {
   const [showSampleOutput, setShowSampleOutput] = useState(false);
   const [statementType, setStatementType] = useState('bank');
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [showResendVerification, setShowResendVerification] = useState(false);
 
   // Check auth on mount
   useEffect(() => {
@@ -181,11 +183,21 @@ export default function App() {
     }
   }, [token]);
 
-  // Check for upgrade success
+  // Check for URL params (upgrade, verification)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('upgrade') === 'success') {
       fetchUser();
+      window.history.replaceState({}, '', '/');
+    }
+    if (params.get('verified') === 'true') {
+      setSuccessMessage('Email verified successfully! You can now convert files.');
+      fetchUser();
+      window.history.replaceState({}, '', '/');
+    }
+    if (params.get('error') === 'token-expired') {
+      setError('Verification link expired. Please request a new one.');
+      setShowResendVerification(true);
       window.history.replaceState({}, '', '/');
     }
   }, []);
@@ -245,6 +257,25 @@ export default function App() {
     setUser(null);
     setResults(null);
     setFiles([]);
+  };
+
+  const resendVerification = async () => {
+    try {
+      const res = await fetch(`${API_URL}/api/auth/resend-verification`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setSuccessMessage('Verification email sent! Check your inbox.');
+        setShowResendVerification(false);
+        setError('');
+      } else {
+        const data = await res.json();
+        setError(data.error || 'Failed to resend verification email.');
+      }
+    } catch (err) {
+      setError('Failed to resend verification email.');
+    }
   };
 
   const handleFileDrop = useCallback((e) => {
@@ -353,6 +384,15 @@ export default function App() {
         // Handle specific error cases
         if (data.upgrade) {
           setShowPricing(true);
+        }
+
+        // Handle email verification required
+        if (data.needsVerification) {
+          setError('Please verify your email before converting files. Check your inbox for the verification link.');
+          setShowResendVerification(true);
+          setUploading(false);
+          setProcessingStep(0);
+          return;
         }
 
         setError(errorMessage);
@@ -599,14 +639,35 @@ export default function App() {
           </div>
         )}
 
+        {/* Success Message */}
+        {successMessage && (
+          <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg flex items-start gap-3">
+            <Icons.Check size={20} />
+            <div className="flex-1">
+              <p className="text-emerald-800">{successMessage}</p>
+            </div>
+            <button onClick={() => setSuccessMessage('')} className="text-emerald-500 hover:text-emerald-700">
+              <Icons.X />
+            </button>
+          </div>
+        )}
+
         {/* Error Message */}
         {error && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
             <Icons.AlertCircle />
             <div className="flex-1">
               <p className="text-red-800">{error}</p>
+              {showResendVerification && (
+                <button
+                  onClick={resendVerification}
+                  className="mt-2 text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                >
+                  Resend Verification Email
+                </button>
+              )}
             </div>
-            <button onClick={() => setError('')} className="text-red-500 hover:text-red-700">
+            <button onClick={() => { setError(''); setShowResendVerification(false); }} className="text-red-500 hover:text-red-700">
               <Icons.X />
             </button>
           </div>
