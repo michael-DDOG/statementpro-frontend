@@ -992,6 +992,7 @@ export default function App() {
               <a href="/privacy" className="hover:text-gray-700">Privacy Policy</a>
               <a href="/terms" className="hover:text-gray-700">Terms of Service</a>
               <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-gray-700">Contact</a>
+              <a href="https://statementpro.canny.io" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700">Feedback</a>
             </div>
           </div>
           <p className="mt-8 text-center text-gray-400 text-sm">
